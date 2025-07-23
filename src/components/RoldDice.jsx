@@ -6,25 +6,33 @@ import img4 from "../assets/dice_4.png";
 import img5 from "../assets/dice_5.png";
 import img6 from "../assets/dice_6.png";
 
-const RoldDice = ({ resetScore }) => {
+const RoldDice = ({ resetScore, updateScore, selected, setError }) => {
   const images = [img1, img2, img3, img4, img5, img6];
 
   const [randomImage, setRandomImage] = useState(images[0]);
   const [showRule, setShowRule] = useState(false);
 
   const showRandomImage = () => {
+    if (selected == null) {
+      setError("You have not selected any Number");
+      return; // Stop here, don't roll the dice
+    }
+    setError("");
     const index = Math.floor(Math.random() * images.length);
     setRandomImage(images[index]);
+
+    // Score logic here
+    updateScore(index + 1); // Dice number is index + 1 (0-based array)
   };
 
   const toggleRules = () => {
-    setShowRule((prev) => !prev); // ✅ Toggles the rules section
+    setShowRule((prev) => !prev);
   };
 
   return (
     <div>
       <div className="flex flex-col items-center justify-center mt-10 space-y-6">
-        {/* ✅ Image Section */}
+        {/* Dice Image */}
         <div className="flex flex-col items-center">
           <img
             src={randomImage}
@@ -35,7 +43,7 @@ const RoldDice = ({ resetScore }) => {
           <p className="mt-2 text-gray-800">Click on Dice to Roll</p>
         </div>
 
-        {/* ✅ Buttons Section */}
+        {/* Buttons */}
         <div className="flex flex-col gap-4">
           <button
             onClick={resetScore}
@@ -52,7 +60,7 @@ const RoldDice = ({ resetScore }) => {
         </div>
       </div>
 
-      {/* ✅ Conditional rendering of rules */}
+      {/* Rules Section */}
       {showRule && (
         <div className="mt-4 p-4 bg-red-50 rounded shadow-md text-gray-800 max-w-xl mx-auto">
           <h2 className="text-xl font-bold mb-2">How to play dice game</h2>
@@ -60,11 +68,11 @@ const RoldDice = ({ resetScore }) => {
             <li className="text-sm">Rule 1: Select any Number.</li>
             <li className="text-sm">Rule 2: Click on Dice Image.</li>
             <li className="text-sm">
-              Rule 3: after click on dice if selected number is equal to dice
-              number you will get same point as dice.
+              Rule 3: If your selected number matches the dice number, you get
+              that number in points.
             </li>
             <li className="text-sm">
-              Rule 4: if you get wrong guess then 2 point will be dedcuted.
+              Rule 4: If you guess wrong, 2 points will be deducted.
             </li>
           </ul>
         </div>

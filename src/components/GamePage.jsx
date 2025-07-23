@@ -3,16 +3,38 @@ import SelectNumber from "./SelectNumber";
 import RoldDice from "./RoldDice";
 
 const GamePage = () => {
-  const [score, setScore] = useState(0); // By default score 0
+  const [score, setScore] = useState(0);
+  const [selectedNumber, setSelectedNumber] = useState(null);
+  const [error, setError] = useState("");
 
   const resetScore = () => {
-    setScore(0); // Reset Score
+    setScore(0);
+  };
+
+  const updateScore = (diceNumber) => {
+    if (selectedNumber === null) return;
+
+    if (selectedNumber === diceNumber) {
+      setScore((prev) => prev + diceNumber);
+    } else {
+      setScore((prev) => Math.max(0, prev - 2)); // Prevent negative score
+    }
   };
 
   return (
     <div>
-      <SelectNumber score={score} />
-      <RoldDice resetScore={resetScore} />
+      <SelectNumber
+        score={score}
+        onSelect={setSelectedNumber}
+        selected={selectedNumber}
+        error={error}
+      />
+      <RoldDice
+        resetScore={resetScore}
+        updateScore={updateScore}
+        selected={selectedNumber}
+        setError={setError}
+      />
     </div>
   );
 };
