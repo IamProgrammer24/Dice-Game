@@ -3,10 +3,10 @@ import SelectNumber from "./SelectNumber";
 import RoldDice from "./RoldDice";
 
 const GamePage = () => {
-  const [score, setScore] = useState(0); // Optional: set default score
+  const [score, setScore] = useState(0); // By default score 0
 
   const resetScore = () => {
-    setScore(0); // Reset to first image
+    setScore(0); // Reset Score
   };
 
   return (
