@@ -6,7 +6,7 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const handleRoute = () => {
-    navigate("/game");
+    navigate("/guessnumber");
   };
 
   return (
@@ -23,14 +23,14 @@ const HomePage = () => {
 
           <div className="flex flex-col sm:flex-row gap-6">
             <button
-              className="bg-black text-white text-lg font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-900 hover:scale-105 transition-all duration-300"
+              className="bg-black text-white text-md font-semibold px-7 py-2 rounded-lg shadow-md hover:bg-gray-900 hover:scale-105 transition-all duration-300"
               onClick={handleRoute}
             >
-              Play Now
+              Guess Number
             </button>
             <button
-              className="bg-white text-black border border-black text-lg font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-gray-100 hover:scale-105 transition-all duration-300"
-              onClick={() => alert("Roll the dice functionality coming soon!")}
+              className="bg-white text-black border border-black text-md font-semibold px-7 py-2 rounded-lg shadow-md hover:bg-gray-100 hover:scale-105 transition-all duration-300"
+              onClick={() => navigate("/roledice")}
             >
               Roll the Dice
             </button>
