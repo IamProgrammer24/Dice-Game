@@ -12,7 +12,7 @@
 
 Check out the live version of this project here:
 
-🔗 [View Live Site](https://.onrender.com/)
+🔗 [View Live Site](https://dicegame-pi0u.onrender.com)
 
 ---
 
